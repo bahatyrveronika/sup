@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link href="/static/main2.css" rel="stylesheet"></link>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <header>
+    <div class="banner">Find the best restaurant for you</div>
+    <nav class="nav">
+      Supper Spy
+      <div id="logo nav__top">
+        <svg width="80" height="72" viewBox="0 0 80 72" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <image xlink:href="logo.png" width="80" height="72" x="0" y="0" />
+        </svg >
+        <span style="margin-top: -300px">
+        </span>
+      </div>
+        <ul class="navigation-menu">
+            <li>
+                <a href="#">About Us</a>
+            </li>
+        </ul>
+        <div id="utility">
+            {% if user.is_authenticated %}
+              <a href="/profilepage" class="material-symbols-outlined">Profile</a>
+            {% else %}
+              <a href="/signpage" class="material-symbols-outlined">Sign up/Log in</a>
+            {% endif %}
+        </div>
+    </nav>
+  </header>
+  
+  
+  <section class="hero">
+    <section>
+      <div class="main" style="text-align: center;
+        -webkit-text-stroke: 1px #141313; /* Add text outline for WebKit browsers */
+  text-stroke: 2px #141313; ">
+        <h1>Supper Spy</h1>
+      </div>
+      <!-- <div class="criteria-box">
+        <div class="location">
+          <input type="text" id="locationInput" placeholder="Write your location">
+        </div>
+        <div class="criteria__text"> -->
+          <h4>Choose your criteria</h4>
+        </div>
+        
+        <form method="POST" action="/find_restaurants" class="form" id="form3">
+            <div class="criteria-box">
+                <div class="location">
+                  <input type="text" name="locationInput" id="locationInput" placeholder="Write your location">
+                </div>
+            <div class="criteria__text">
+          <div class="criteria-line">
+            <label for="distance"><span id="distance-value"></span></label>
+            <input type="range" id="distance" name="distance" min="0" max="150" oninput="updateSliderValue('distance', this.value)">
+          </div>
+          <div class="criteria-line">
+            <label for="price"><span id="price-value"></span></label>
+            <input type="range" id="price" name="price" min="0" max="100" oninput="updateSliderValue('price', this.value)">
+          </div>
+          <div class="criteria-line">
+            <fieldset>
+              <legend>Rate</legend>
+    <style>
+      /* Apply smaller font size to radio buttons and labels */
+      fieldset label,
+      fieldset input[type="radio"] {
+        font-size: 40px; /* Adjust the font size as needed */
+      }
+      
+      .selected {
+        color: #fe7c20;
+      }
+    </style>
+              <input type="radio" id="rate3" name="rate" value="3">
+              <label for="rate3">
+                <span class="star">&#9733;</span><span class="text">3+</span>
+              </label>
+              <input type="radio" id="rate4" name="rate" value="4">
+              <label for="rate4">
+                <span class="star">&#9733;</span><span class="text">4+</span>
+              </label>
+            </fieldset>
+          </div>
+          <div class="criteria-line">
+            <input type="checkbox" class="Child" id="child_room" name="child_room">
+            <label for="child_room">Child room</label>
+          </div>
+          <style>
+            fieldset {
+              border: none; /* Remove default fieldset border */
+              margin: 0; /* Remove default margin */
+              padding: 0; /* Remove default padding */
+            }
+
+            /* Apply styles to the legend */
+            legend {
+              font-size: 24px; /* Adjust the font size as needed */
+              margin-bottom: 10px; /* Add space below the legend */
+            }
+
+            /* Apply styles to the checkboxes and labels */
+            input[type="checkbox"] {
+              display: none; /* Hide the checkboxes */
+            }
+
+            label {
+              display: inline-block;
+              width: calc(25% - 10px); /* Set the width of each checkbox */
+              margin-right: 10px; /* Add space between checkboxes */
+              margin-left: 10px;
+              margin-bottom: 10px; /* Add space below checkboxes */
+              text-align: center; /* Center the text */
+              border: 2px solid #ccc; /* Add border to the checkboxes */
+              border-radius: 10px; /* Add border radius */
+              padding: 10px; /* Add padding */
+              cursor: pointer; /* Change cursor to pointer on hover */
+            }
+
+            input[type="checkbox"]:checked + label,
+            input[type="radio"]:checked + label {
+              background-color: #fe7c20; /* Change background color of checked checkboxes */
+              color: #fff; /* Change text color of checked checkboxes */
+            }
+          </style>
+          <div class="criteria-line" id="Cuisine">
+            <style>
+              legend {
+                font-size: 70px; /* Adjust the font size as needed */
+              }
+            </style>
+            <fieldset>
+              <legend>Cuisine</legend>
+              <input type="checkbox" id="ukrainian" name="1" value="Українська">
+              <label for="ukrainian">Українська</label>
+              <input type="checkbox" id="italian" name="2" value="Італійська">
+              <label for="italian">Італійська</label>
+              <input type="checkbox" id="french" name="3" value="Французька">
+              <label for="french">Французька</label>
+              <input type="checkbox" id="virmenish" name="4" value="Вірменська">
+              <label for="virmenish">Вірменська</label>
+              <input type="checkbox" id="streetfood" name="5" value="Вулична їжа">
+              <label for="streetfood">Вулична їжа</label>
+              <input type="checkbox" id="europian" name="6" value="Європейська">
+              <label for="europian">Європейська</label>
+              <input type="checkbox" id="fish" name="7" value="Рибна">
+              <label for="fish">Рибна</label>
+              <input type="checkbox" id="fastfood" name="8" value="Фаст-фуд">
+              <label for="fastfood">Фаст-фуд</label>
+              <input type="checkbox" id="asian" name="9" value="Азіатська">
+              <label for="asian">Азіатська</label>
+              <input type="checkbox" id="author" name="10" value="Авторська">
+              <label for="author">Авторська</label>
+              <input type="checkbox" id="panasian" name="11" value="Паназійська">
+              <label for="panasian">Паназійська</label>
+              <input type="checkbox" id="galician" name="12" value="Галицька">
+              <label for="galician">Галицька</label>
+              <input type="checkbox" id="georgian" name="13" value="Грузинська">
+              <label for="georgian">Грузинська</label>
+              <input type="checkbox" id="japanish" name="14" value="Японська">
+              <label for="japanish">Японська</label>
+              <input type="checkbox" id="american" name="15" value="Американська">
+              <label for="american">Американська</label>
+              <input type="checkbox" id="eastern" name="16" value="Східна">
+              <label for="eastern">Східна</label>
+              <input type="checkbox" id="kavkaz" name="17" value="Кавказька">
+              <label for="kavkaz">Кавказька</label>
+              <input type="checkbox" id="home" name="18" value="Домашня">
+              <label for="home">Домашня</label>
+              <input type="checkbox" id="westukrainian" name="19" value="Західно-українська">
+              <label for="westukrainian">Західно-українська</label>
+              <input type="checkbox" id="mexican" name="20" value="Мексиканська">
+              <label for="mexican">Мексиканська</label>
+              <input type="checkbox" id="world" name="21" value="Світова">
+              <label for="world">Світова</label>
+              <input type="checkbox" id="polish" name="22" value="Польська">
+              <label for="polish">Польська</label>
+              <input type="checkbox" id="chinese" name="23" value="Китайська">
+              <label for="chinese">Китайська</label>
+              <input type="checkbox" id="turkish" name="24" value="Турецька">
+              <label for="turkish">Турецька</label>
+              <input type="checkbox" id="azerbaidjan" name="25" value="Азербайджанська">
+              <label for="azerbaidjan">Азербайджанська</label>
+              <input type="checkbox" id="checz" name="26" value="Чеська">
+              <label for="checz">Чеська</label>
+              <input type="checkbox" id="fuzhn" name="27" value="Ф'южн">
+              <label for="fuzhn">Ф'южн</label>
+              <input type="checkbox" id="irland" name="28" value="Ірландська">
+              <label for="irland">Ірландська</label>
+              <input type="checkbox" id="ancientslav" name="29" value="Старослов'янська">
+              <label for="ancientslav">Старослов'янська</label>
+              <input type="checkbox" id="greece" name="30" value="Грецька">
+              <label for="greece">Грецька</label>
+              <input type="checkbox" id="exclusive" name="31" value="Ексклюзивна">
+              <label for="exclusive">Ексклюзивна</label>
+              <input type="checkbox" id="middlesea" name="32" value="Середземноморська">
+              <label for="middlesea">Середземноморська</label>
+              <input type="checkbox" id="ugorish" name="33" value="Угорська">
+              <label for="ugorish">Угорська</label>
+              <input type="checkbox" id="slavian" name="34" value="Слов'янська">
+              <label for="slavian">Слов'янська</label>
+              <input type="checkbox" id="uzbek" name="35" value="Узбекська">
+              <label for="uzbek">Узбекська</label>
+              <input type="checkbox" id="latinoamerican" name="36" value="Латиноамериканська">
+              <label for="latinoamerican">Латиноамериканська</label>
+            </fieldset>
+          </div>
+          <script>
+            const rateRadios = document.querySelectorAll('input[name="rate"]');
+            const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+            const cuisineCheckboxes = document.querySelectorAll('input[name="cuisine"]');
+          
+            rateRadios.forEach(radio => {
+              radio.addEventListener('change', () => {
+                handleColorChange();
+              });
+            });
+          
+            checkboxes.forEach(checkbox => {
+              checkbox.addEventListener('change', () => {
+                handleColorChange();
+              });
+            });
+          
+            cuisineCheckboxes.forEach(checkbox => {
+              checkbox.addEventListener('change', () => {
+                handleColorChange();
+              });
+            });
+          
+            function handleColorChange() {
+              const elements = document.querySelectorAll('.criteria-line input[type="checkbox"]:checked, .criteria-line input[type="radio"]:checked');
+              elements.forEach(element => {
+                element.nextElementSibling.classList.add('selected');
+              });
+          
+              const allElements = document.querySelectorAll('.criteria-line input[type="checkbox"], .criteria-line input[type="radio"]');
+              allElements.forEach(element => {
+                if (!element.checked) {
+                  element.nextElementSibling.classList.remove('selected');
+                }
+              });
+            }
+          </script>
+          
+          <div class="criteria-line">
+            <button type="button" action="/find_restaurants" onclick="sortRestaurants()">Find</button>
+          </div>
+        </form>
+      </div>
+    </section>
+  </section>
+    <section class="sorted__rest">
+      <div id="sortedResults"></div>
+
+      <script>
+        // Function to sort restaurants
+        function sortRestaurants() {
+            const form = document.getElementById('form3');
+            const formData = new FormData(form);
+            fetch('/find_restaurants', {
+                    method: 'POST',
+                    body: formData
+                })
+                .then(sortedResults => {
+                    let response1 = sortedResults.json();
+                    console.log(response1);
+                    return response1;
+                }
+                    ) // Corrected
+                .then(sortedResults => {
+                    displayResults(sortedResults);
+                })
+                .catch(error => {
+                    // Error handling
+                    console.error('Error:', error);
+                });
+        }
+
+        // Function to display sorted results
+        function displayResults(restaurants) {
+          const sortedResultsElement = document.getElementById('sortedResults');
+          sortedResultsElement.innerHTML = ''; // Clear previous results
+          
+          const sortedResults = document.querySelector('.sorted__rest');
+          sortedResultsElement.innerHTML = ''; // Clear previous results
+        
+          // Change the display style to "block"
+          sortedResults.style.display = "block";
+
+          restaurants.forEach(restaurant => {
+            const restaurantElement = document.createElement('div');
+            restaurantElement.innerHTML = `
+              <div class="restaurant">
+                <a href="/restpage/${restaurant.Name}">
+                    <img src="${restaurant.Photo}"">
+                </a>
+                <h3 style="color: white;">${restaurant.Name}</h3>
+                <p style="color: white;">Rating: <span style="color: #e66100;">${restaurant.Rating}</p>
+                <p style="color: white;">Average lunch price: <span style="color: #e66100;">${restaurant.Pirce}</p>
+                
+              </div>
+            `;
+            sortedResultsElement.appendChild(restaurantElement);
+          });
+        }
+      </script>
+      
+    </section>
+
+
+    <h2>About us</h2>
+  
+    <ul class="shop-pets">
+        <li class="card-large card-light" id="sup-first">
+            <div class="card-image"><img src="culinary.png"></div>
+            <ul>
+                Culinary Diversity
+                <li><a href="#">We celebrate diverse global cuisines, showcasing a variety of restaurants from local favorites to international treasures, inviting users to explore new culinary experiences.</li>
+            </ul>
+        </li>
+  
+        <li class="card-large card-dark" id="sup-second">
+            <div class="card-image"><img src="quality.jpeg"></div>
+            <ul>Quality and Authenticity
+                <li><a href="#">We connect food lovers with authentic dining venues, carefully curated for excellence in food, service, and ambiance, ensuring unforgettable experiences.</li>
+            </ul>
+  
+        </li>
+  
+        <li class="card-large card-dark" id="sup-third">
+            <div class="card-image"><img src="community.jpeg"> </div>
+            <ul>Community Engagement
+                <li><a href="#">We support local eateries and small businesses, fostering community connections by promoting neighborhood gems and family-owned establishments, enriching local economies.</li>
+            </ul>
+  
+        </li>
+        <li class="card-large card-light" id="sup-forth">
+            <div class="card-image"><img src="/static/photo/Оазис/id_193507.jpg"></div>
+            <ul>
+              Accessibility and Inclusivity
+                <li><a href="#">We believe in inclusive dining experiences for all, providing options for diverse dietary needs and budgets, ensuring everyone can enjoy exceptional dining without barriers.</li>
+            </ul>
+  
+        </li>
+    </ul>
+  </section>
+  </footer>
+  <script src="/static/js1.js"></script>
+</body>
+</html>

@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link href="/static/main.css" rel="stylesheet"></link>
+</head>
+<body>
+  <header>
+    <div class="banner">Find the best restaurant for you</div>
+    <nav class="nav">
+      Supper Spy
+      <div id="logo nav__top">
+        <svg width="80" height="72" viewBox="0 0 80 72" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <image xlink:href="logo.png" width="80" height="72" x="0" y="0" />
+        </svg >
+        <span style="margin-top: -300px">
+        </span>
+    </div>
+        <ul class="navigation-menu">
+            <li><a href="#">Services</a>
+                <ul class="subnav">
+                    <li class="card-med" id="serv-review-and-rating">
+                        <div class="card-image"></div>
+                        <a href="#">
+                          <span>Restaurant Reviews<br> and Ratings</span>
+                        </a>
+                    </li>
+                    <li class="card-med" id="serv-menu-exploration">
+                        <div class="card-image"></div>
+                        <a href="#">
+                            <span>Menu<br> Exploration</span>
+                        </a>
+                </ul>
+            </li>
+            <li>
+                <a href="#">About Us</a>
+            </li>
+        </ul>
+        <div id="utility">
+          {% if user.is_authenticated %}
+            <a href="/signpage" class="material-symbols-outlined">Sign up/Log in</a>
+          <!-- <a href="/logout" class="material-symbols-outlined">Log in</a> -->
+          {% else %}
+            <a href="/logout" class="material-symbols-outlined">Log out</a>
+          {% endif %}
+        </div>
+    </nav>
+  </header>
+  <section class="hero">
+    <h1>Supper Spy</h1>
+    <h3>Find the best restaurant for you. Click the button below to find the best choice for you.</h3>
+    <div class="btn-group">
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Search with Autofill</title>
+        <style>
+          #searchResults {
+            display: none; /* Hide the block by default */
+            position: absolute; /* Position it below the search input */
+            border: 1px solid #ddd;
+            padding: 10px;
+            width: 150px; /* Set the width of the block */
+            background-color: white;
+          }
+        </style>
+        </head>
+        <body>
+        
+        <!-- Search input -->
+        <input type="text" id="searchInput" placeholder="Type to search..." oninput="showResults()">
+        
+        <!-- Search results block -->
+        <div id="searchResults">
+          <!-- Search results will be displayed here -->
+        </div>
+        
+        <script>
+        // Array representing the database of restaurants
+        const restaurantDatabase = ["Tiki-Thai", "Правда", "Добрий друг", "Шотитам"];
+        
+        function showResults() {
+          var input = document.getElementById('searchInput').value;
+          var results = document.getElementById('searchResults');
+        
+          if (input.length > 0) {
+            // Filter the restaurant database based on the input
+            var matches = restaurantDatabase.filter(function(restaurant) {
+              return restaurant.toLowerCase().includes(input.toLowerCase());
+            });
+        
+            // Show the block with the matching results
+            results.style.display = 'block';
+            results.innerHTML = '<strong>Searching for:</strong> ' + input + '<br><br>';
+        
+            // Display each match as a clickable element
+            matches.forEach(function(restaurant) {
+              var div = document.createElement('div');
+              div.textContent = restaurant;
+              div.style.cursor = 'pointer';
+              div.onclick = function() {
+                document.getElementById('searchInput').value = restaurant; // Autofill on click
+                results.style.display = 'none'; // Hide results after selection
+              };
+              results.appendChild(div);
+            });
+          } else {
+            // Hide the block if the search input is empty
+            results.style.display = 'none';
+          }
+        }
+        </script>
+        <style>
+          #searchInput {
+          width: 350px;
+          height: 40px;
+          border-radius: 5px;/* Adjust the width as needed */
+          position: relative;
+          }
+          #searchResults {
+            display: none; /* Hide the block by default */
+            position: absolute; /* Absolute position relative to the #searchInput */
+            border: 1px solid #ddd;
+            padding: 10px;
+            width: 30%; /* Responsive width with padding accounted for */
+            background-color: white;
+            top: 350px; /* Adjust the top position to place it right below the search input */
+            left: 0; /* Align it with the left edge of the search input */
+            box-sizing: сontent-box; /* Include padding and border in the element's width and height */
+            z-index: 1000; /* Ensure it stacks on top of other content */
+            margin-left: 6%;
+          }
+          #searchResults div:hover {
+            background-color: orange; /* Highlight in orange on hover */
+          }
+        </style>        
+      <div class="wrap">
+        
+      </div>
+      
+      <button class="filter-button round-button">
+          <img src="filter.png" class="filter-icon">
+      </button>
+      
+      <div class="filter-options">
+          <label>
+              <input type="checkbox" name="option1"> option1
+          </label>
+          <br>
+          <label>
+              <input type="checkbox" name="option2"> option2
+          </label>
+          <br>
+          <label>
+            <input type="checkbox" name="option2"> option3
+        </label>
+        <br>
+        <label>
+            <input type="checkbox" name="option2"> option4
+        </label>
+        <br>
+        <label>
+            <input type="checkbox" name="option2"> option5
+        </label>
+        <br>
+        <label>
+            <input type="checkbox" name="option2"> option6
+        </label>
+        <br>
+        <label>
+            <input type="checkbox" name="option2"> option7
+        </label>
+        <br>
+        <label>
+            <input type="checkbox" name="option2"> option8
+        </label>
+        <br>
+        <label>
+            <input type="checkbox" name="option2"> option9
+        </label>
+        <br>
+        <label>
+            <input type="checkbox" name="option2"> option10
+        </label>
+        <br>
+        <label>
+            <input type="checkbox" name="option2"> option11
+        </label>
+        <br>
+      </div>
+      </datalist>
+    </div>
+    <script>
+        // Sample array of restaurant names
+        const restaurants = ["Restaurant A", "Restaurant B", "Restaurant C", "Diner D", "Cafe E"];
+        
+        // Function to populate the datalist with suggestions
+        function populateSuggestions(input) {
+          const dataList = document.getElementById('suggestions');
+          dataList.innerHTML = ''; // Clear previous suggestions
+        
+          const filteredRestaurants = restaurants.filter(restaurant =>
+            restaurant.toLowerCase().includes(input.toLowerCase())
+          );
+        
+          filteredRestaurants.forEach(restaurant => {
+            const option = document.createElement('option');
+            option.value = restaurant;
+            dataList.appendChild(option);
+          });
+        }
+        
+        // Event listener for the input field
+        document.getElementById('searchInput').addEventListener('input', (event) => {
+          populateSuggestions(event.target.value);
+        });
+    </script>
+  
+  </section>
+  <section>
+    <h2>About us</h2>
+  
+    <ul class="shop-pets">
+        <li class="card-large card-light" id="sup-dog">
+            <div class="card-image"><img src="culinary.png"></div>
+            <ul>
+                Culinary Diversity
+                <li><a href="#">We celebrate diverse global cuisines, showcasing a variety of restaurants from local favorites to international treasures, inviting users to explore new culinary experiences.</li>
+            </ul>
+        </li>
+  
+        <li class="card-large card-dark" id="sup-cat">
+            <div class="card-image"><img src="quality.png"></div>
+            <ul>Quality and Authenticity
+                <li><a href="#">We connect food lovers with authentic dining venues, carefully curated for excellence in food, service, and ambiance, ensuring unforgettable experiences.</li>
+            </ul>
+  
+        </li>
+  
+        <li class="card-large card-dark" id="sup-bird">
+            <div class="card-image"><img src="community.png"> </div>
+            <ul>Community Engagement
+                <li><a href="#">We support local eateries and small businesses, fostering community connections by promoting neighborhood gems and family-owned establishments, enriching local economies.</li>
+            </ul>
+  
+        </li>
+        <li class="card-large card-light" id="sup-fish">
+            <div class="card-image"><img src="inclusivity.png"></div>
+            <ul>
+              Accessibility and Inclusivity
+                <li><a href="#">We believe in inclusive dining experiences for all, providing options for diverse dietary needs and budgets, ensuring everyone can enjoy exceptional dining without barriers.</li>
+            </ul>
+  
+        </li>
+    </ul>
+  </section>
+  
+  <section>
+    <h2>Our Services</h2>
+  
+    <ul class="services">
+        <li class="card-large card-dark card-wide" id="serv-review-and-rating">
+            <div class="card-image"></div>
+            <ul>
+                Restaurant Reviews and Ratings<span class="subtitle">Enable users to leave reviews and ratings for restaurants they have visited. </span>
+                <button class="btn-filled-dark"><span class="material-symbols-outlined">
+                    </span>Find now</button>
+  
+            </ul>
+  
+  
+        </li>
+        <li class="card-large card-dark card-wide" id="serv-menu-exploration">
+            <div class="card-image"></div>
+            <ul>
+                Menu Exploration<span class="subtitle">Provide a feature that allows users to explore restaurant menus before visiting. </span>
+                <button class="btn-filled-dark"><span class="material-symbols-outlined">
+                    </span>Find now</button>
+            </ul>
+  
+        </li>
+    </ul>
+  </section>
+  </footer>
+  <!-- <script src="js.js"></script> -->
+  <script src="/static/main.js"></script>
+</body>
+</html>
+

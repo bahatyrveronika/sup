@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sign up</title>
+  <link href="/static/signup.css" rel="stylesheet"></link>
+</head>
+<body>
+    {% with messages = get_flashed_messages(with_categories=true) %}
+		{% if messages %}
+			{% for category, message in messages %}
+				{% if category == 'error' %}
+				<div class="alert alert-danger alter-dismissable fade show" role="alert">
+					{{ message }}
+					<button type="button" class="close" data-dismiss="alert">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				{% else %}
+				<div class="alert alert-success alter-dismissable fade show" role="alert">
+					{{ message }}
+					<button type="button" class="close" data-dismiss="alert">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				{% endif %}
+			{% endfor %}
+		{% endif %}
+    {% endwith %}
+<div class="container right-panel-active">
+	<!-- Sign Up -->
+	<div class="container__form container--signup">
+		<form method="POST" action="/sign-up" class="form" id="form1">
+			<h2 class="form__title">Sign Up</h2>
+			<input type="text" placeholder="User" class="input" name="username"/>
+			<input type="email" placeholder="Email" class="input" name="email" />
+			<input type="password" placeholder="Password" class="input" name="password"/>
+			<button class="btn">Sign Up</button>
+		</form>
+	</div>
+	<!-- Log In -->
+	<div class="container__form container--signin">
+		<form method="POST" action="/login" class="form" id="form2">
+			<h2 class="form__title">Log in</h2>
+			<input type="email" placeholder="Email" class="input" name="email"/>
+			<input type="password" placeholder="Password" class="input" name ="password"/>
+			<button class="btn">Log in</button>
+			<a href="#" class="link">Forgot your password?</a>
+		</form>
+	</div>
+	<!-- Overlay -->
+	<div class="container__overlay">
+		<div class="overlay">
+			<div class="overlay__panel overlay--left">
+				<button class="btn" id="signIn" href="/login">Log in</button>
+			</div>
+			<div class="overlay__panel overlay--right">
+				<button class="btn" id="signUp" href="/sign-up">Sign Up</button>
+			</div>
+		</div>
+	</div>
+</div>
+
+<script src="/static/signup.js"></script>
+
+</body>
+</html>

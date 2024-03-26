@@ -1,0 +1,61 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Profile</title>
+    <link rel="stylesheet" href="/static/profile.css">
+</head>
+<body>
+    <div class="container">
+        <h1>User Profile</h1>
+        <img id="profile-image" src="{{ image_file }}" alt="User Photo">
+        
+        <div id="user-info">
+            <p>{{ user.name }}</p>
+            <p>Email: {{ user.email }}</p>
+        </div>
+        <div id="favorite-restaurants">
+            <h2>Favorite Restaurants</h2>
+            <div class="row">
+                <div class="restaurant">
+                    <img src="restaurant1.jpg" alt="Restaurant 1">
+                    <a href="restaurant1.html">Restaurant 1</a>
+                </div>
+                <div class="restaurant">
+                    <img src="restaurant2.jpg" alt="Restaurant 2">
+                    <a href="restaurant2.html">Restaurant 2</a>
+                </div>
+                <div class="restaurant">
+                    <img src="restaurant3.jpg" alt="Restaurant 3">
+                    <a href="restaurant3.html">Restaurant 3</a>
+                </div>
+            </div>
+            <!-- Add more rows of favorite restaurants as needed -->
+        </div>
+        <div id="my-reviews">
+            <h2>My Reviews</h2>
+            <div class="review">
+                <div class="restaurant">
+                    <img src="restaurant1.jpg" alt="Restaurant">
+                    <p class="restaurant-name"><a href="restaurant4.html">Restaurant 4</a></p>
+                </div>
+                <div class="review-text">
+                    <p>Review text</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="back-button">
+        <a href="/"><i class="fas fa-home"></i> Back to Main Page</a>
+    </div>
+    <div id="experience">
+        <h2>Tell Us About Your Experience</h2>
+        <form action="{{ url_for('views.notebutton') }}" method="POST">
+            <textarea id="review" name="review" class="form-control" rows="4" cols="50"></textarea><br>
+            <input type="submit" value="Submit">
+        </form>
+    </div>
+</body>
+</html>

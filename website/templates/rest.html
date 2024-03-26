@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Restaurant Page</title>
+    <link rel="stylesheet" href="/static/rest.css">
+</head>
+<body>
+    <header>
+        <div class="company-info">
+            <a href="#" class="home-button">Back to Main Page</a>
+            <img src="logo.png" alt="Company Logo" class="company-logo">
+            <h1 class="company-name">Supper Spy</h1>
+        </div>
+    </header>
+    <main>
+        <div class="restaurant-preview">
+            <div class="restaurant-photo">
+                <img src="{{ url_for('static', filename='photo/' + restaurant[6]) }}" alt="Restaurant Photo">
+                <h1 class="restaurant-name">{{ restaurant[0] }}</h1>
+            </div>
+        </div>
+        <div class="container">
+            <div class="restaurant-info">
+                <div class="info-section">
+                    <h2>Information about restaurant</h2>
+                    <p class="address">{{ restaurant[1] }}</p>
+                    <p class="description">
+                        {{ restaurant[2] }}
+                    </p>
+                    <p class="description">{{ restaurant[3] }}</p>
+                    <p class="description">{{ restaurant[4] }}</p>
+                    <p class="description">Average price for lunch: {{ restaurant[5] }}</p>
+                    <hr>
+                    <h3 style="display: inline;">Menu</h3>
+                    <span style="margin-left: 10px;">|</span>
+                    <p style="display: inline; margin-left: 10px;"><a href="{{ restaurant[7] }}" class="menu-link">View menu on restaurant's website</a></p>
+                    <!-- Design: https://dribbble.com/shots/7434211-Review-Panel-UI-Design -->
+                    <div class="reviews-container">
+                        <h2>Reviews</h2>
+                        <div class="review">
+                            <span class="icon-container">5 <i class="fas fa-star"></i></span>
+                            <div class="progress">
+                                <div class="progress-done" data-done="68"></div>
+                            </div>
+                            <span class="percent">68%</span>
+                        </div>
+                        <div class="review">
+                            <span class="icon-container">4 <i class="fas fa-star"></i></span>
+                            <div class="progress">
+                                <div class="progress-done" data-done="13"></div>
+                            </div>
+                            <span class="percent">13%</span>
+                        </div>
+                        <div class="review">
+                            <span class="icon-container">3 <i class="fas fa-star"></i></span>
+                            <div class="progress">
+                                <div class="progress-done" data-done="9"></div>
+                            </div>
+                            <span class="percent">9%</span>
+                        </div>
+                        <div class="review">
+                            <span class="icon-container">2 <i class="fas fa-star"></i></span>
+                            <div class="progress">
+                                <div class="progress-done" data-done="3"></div>
+                            </div>
+                            <span class="percent">3%</span>
+                        </div>
+                        <div class="review">
+                            <span class="icon-container">1 <i class="fas fa-star"></i></span>
+                            <div class="progress">
+                                <div class="progress-done" data-done="7"></div>
+                            </div>
+                            <span class="percent">7%</span>
+                        </div>
+                    </div>
+                    <form action="/submit_review" method="POST">
+                        <div class="leave-rating-feedback">
+                            <h3>Leave your rating and feedback</h3>
+                            <div class="star-rating" data-rating="0">
+                                <input type="radio" id="star5" name="rating" value="5"><label for="star5">&#9733;</label>
+                                <input type="radio" id="star4" name="rating" value="4"><label for="star4">&#9733;</label>
+                                <input type="radio" id="star3" name="rating" value="3"><label for="star3">&#9733;</label>
+                                <input type="radio" id="star2" name="rating" value="2"><label for="star2">&#9733;</label>
+                                <input type="radio" id="star1" name="rating" value="1"><label for="star1">&#9733;</label>
+                            </div>
+                            <textarea class="feedback" placeholder="Leave your feedback"></textarea>
+                            <button class="submit-rating">Submit</button>
+                        </div>
+                    </form>                                 
+                </div>
+                <div class="gallery-section">
+                    <div class="reviews-section">
+                        <h2>Reviews from Other Customers</h2>
+                        <div class="review">
+                            <div class="review-header">
+                                <div class="reviewer-info">
+                                    <img src="user.jpg" alt="Reviewer Profile Picture">
+                                    <h3>John Doe</h3>
+                                </div>
+                                <div class="rating">
+                                    <span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+                                    <span class="rating-value">5.0</span>
+                                </div>
+                            </div>
+                            <div class="review-content">
+                                "Amazing experience! The food was delicious and the service was outstanding. Would definitely recommend this restaurant to anyone visiting the area."
+                            </div>
+                        </div>
+                        <div class="review">
+                            <div class="review-header">
+                                <div class="reviewer-info">
+                                    <img src="user.jpg" alt="Reviewer Profile Picture">
+                                    <h3>Jane Smith</h3>
+                                </div>
+                                <div class="rating">
+                                    <span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+                                    <span class="rating-value">5.0</span>
+                                </div>
+                            </div>
+                            <div class="review-content">
+                                "The ambiance of this restaurant is fantastic! I loved the view and the food was top-notch. Can't wait to come back again."
+                            </div>
+                        </div>
+                        <div class="review">
+                            <div class="review-header">
+                                <div class="reviewer-info">
+                                    <img src="user.jpg" alt="Reviewer Profile Picture">
+                                    <h3>Jane Smith</h3>
+                                </div>
+                                <div class="rating">
+                                    <span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+                                    <span class="rating-value">5.0</span>
+                                </div>
+                            </div>
+                            <div class="review-content">
+                                "The ambiance of this restaurant is fantastic! I loved the view and the food was top-notch. Can't wait to come back again."
+                            </div>
+                        </div>
+                        <!-- Add more reviews as needed -->
+                    </div>
+                    <h2>Gallery</h2>
+                    <div id="carousel">
+                        <figure id="spinner">
+                            <img src="restaurant.jpg" alt="photo1">
+                            <img src="restaurant.jpg" alt="photo2">
+                            <img src="restaurant.jpg" alt="photo3">
+                            <img src="restaurant.jpg" alt="photo4">
+                            <img src="restaurant.jpg" alt="photo5">
+                            <img src="restaurant.jpg" alt="photo6">
+                            <img src="restaurant.jpg" alt="photo7">
+                            <img src="restaurant.jpg" alt="photo8">
+                            <!-- Should be 8 photos -->
+                        </figure>
+                    </div>
+                    <div class="arrows">
+                        <span class="arrow" onclick="galleryspin('-')">&lt;</span>
+                        <span class="arrow" onclick="galleryspin('')">&gt;</span>
+                    </div>
+                </div>
+            </div>
+        </div>       
+    </main>
+    <script src="/static/rest.js"></script>
+</body>
+</html>

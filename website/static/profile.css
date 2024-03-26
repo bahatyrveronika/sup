@@ -1,0 +1,212 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+    Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+    background-image: url('interior.jpg'); /* Update with your background image */
+    background-size: cover;
+    background-position: center;
+    color: #333; /* Changed text color for better readability */
+}
+
+.container {
+    max-width: 800px;
+    margin: 50px auto;
+    padding: 20px;
+    background-color: rgba(255, 255, 255, 0.9); /* Softened the background color */
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); /* Added a subtle shadow */
+}
+
+h1 {
+    text-align: center;
+    color: #333; /* Changed heading color for better contrast */
+}
+
+#profile-image {
+    display: block;
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    margin: 20px auto;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); /* Added a subtle shadow */
+}
+
+#user-info {
+    text-align: center;
+    margin-bottom: 20px; /* Added spacing below user info */
+}
+
+#favorite-restaurants {
+    margin-top: 30px;
+    text-align: center;
+}
+
+.restaurant {
+    display: inline-block;
+    width: 30%;
+    margin-right: 2%;
+    margin-bottom: 20px;
+    border-radius: 10px; /* Rounded corners for restaurant containers */
+    overflow: hidden; /* Ensure images don't overflow */
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2); /* Added a subtle shadow */
+}
+
+.restaurant img {
+    width: 100%;
+    height: 150px; /* Set a fixed height */
+    object-fit: cover; /* Maintain aspect ratio and cover the container */
+    border-radius: 5px;
+    margin-bottom: 5px;
+}
+
+
+.restaurant a {
+    display: block;
+    padding: 10px 0;
+    background-color: #333; /* Dark background color */
+    color: #fff;
+    text-decoration: none;
+}
+
+.restaurant a:hover {
+    background-color: #555; /* Darker background color on hover */
+}
+
+.row {
+    margin-bottom: 20px;
+    text-align: center; /* Center align rows */
+}
+
+.row::after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+#my-reviews {
+    margin-top: 30px;
+}
+
+#my-reviews h2 {
+    text-align: center;
+}
+
+.review {
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+}
+
+.review .restaurant {
+    flex: 0 0 auto;
+    width: 30%;
+    margin-right: 20px;
+    border-radius: 10px; /* Rounded corners for review restaurant container */
+    overflow: hidden; /* Ensure images don't overflow */
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2); /* Added a subtle shadow */
+}
+
+.review .restaurant img {
+    width: 100%;
+    height: 150px;
+    border-radius: 10px 10px 0 0; /* Rounded top corners for images */
+}
+
+.review .restaurant-name {
+    text-align: center;
+    font-weight: bold;
+    margin-top: 10px;
+    color: #333; /* Changed color for better contrast */
+}
+
+.review .restaurant-name a {
+    color: #fff;
+    text-decoration: none;
+}
+
+.review .restaurant-name a:hover {
+    text-decoration: underline;
+}
+
+.review .review-text {
+    flex: 1;
+    color: #333;
+    overflow: hidden; /* Hide overflowing text */
+    text-overflow: ellipsis; /* Add ellipsis for overflow */
+}
+
+
+.review-text p {
+    margin: 0;
+    font-size: 16px; /* Reduced font size for better readability */
+}
+
+#experience {
+    margin-top: 30px; /* Adjust the margin-top as needed */
+    padding: 20px;
+    background-color: rgba(255, 255, 255, 0.9);
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+#experience h2 {
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+#experience form {
+    text-align: center;
+}
+
+#experience textarea {
+    width: calc(100% - 20px);
+    max-width: 400px;
+    height: 25px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    resize: vertical;
+    margin-bottom: 10px;
+}
+
+#experience input[type="submit"] {
+    background-color: #333;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+#experience input[type="submit"]:hover {
+    background-color: #fe7c20;
+}
+
+
+#back-button {
+    position: fixed;
+    top: 30px;
+    left: 30px;
+}
+
+#back-button a {
+    display: inline-flex;
+    align-items: center;
+    padding: 10px 20px;
+    background-color: #333;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+#back-button a i {
+    margin-right: 5px;
+}
+
+#back-button a:hover {
+    background-color: #fe7c20;
+}
