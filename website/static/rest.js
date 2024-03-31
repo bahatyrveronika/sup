@@ -34,6 +34,8 @@ document.addEventListener('DOMContentLoaded', function() {
         // Отримання обраного рейтингу і відправка даних
         if (selectedRating > 0) {
             sendRating(selectedRating, feedback);
+            feedbackTextarea.value = '';
+            updateStars(0);
         } else {
             alert('Please select a rating before submitting.');
         }

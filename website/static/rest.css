@@ -132,102 +132,13 @@ header {
     text-decoration: underline;
 }
 
-.gallery-section {
-    flex: 1; /* Expand to fill available space */
-    width: calc(50% - 10px); /* Set width to half of the available space with some margin */
-    margin-right: 10px; /* Add margin between sections */
-    background-color: #fff;
-    border-radius: 5px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    text-align: center;
-    position: relative;
-}
-
-#carousel {
-    perspective: 1000px;
-    background: var(--white);
-    padding-top: 10%;
-    font-size: 0;
-    margin-bottom: 3rem;
-    overflow: hidden;
-}
-
-#spinner {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100%;
-    transition: 1s;
-}
-
-.arrows {
-    position: absolute;
-    bottom: 10px;
-    width: 100%;
-}
-
-.arrow {
-    color: var(--gray);
-    margin: 0 5px;
-    display: inline-block;
-    text-decoration: none;
-    font-size: 2rem;
-    transition: 0.6s color;
-    cursor: pointer;
-}
-
-.arrow:hover {
-    color: #888;
-}
-
-
-div#carousel { 
-    perspective: 1200px; 
-    background: #fff; 
-    padding-top: 10%; 
-    font-size:0; 
-    margin-bottom: 3rem; 
-    overflow: hidden; 
-  }
-  figure#spinner { 
-    transform-style: preserve-3d; 
-    height: 200px; 
-    transform-origin: 50% 50% -500px; 
-    transition: 1s; 
-  } 
-  figure#spinner img { 
-    width: 70%; max-width: 425px; 
-    position: absolute; left: 30%;
-    transform-origin: 50% 50% -500px;
-    outline:1px solid transparent; 
-  }
-  figure#spinner img:nth-child(1) { transform:rotateY(0deg); 
-  }
-  figure#spinner img:nth-child(2) { transform: rotateY(-45deg); }
-  figure#spinner img:nth-child(3) { transform: rotateY(-90deg); }
-  figure#spinner img:nth-child(4) { transform: rotateY(-135deg); }
-  figure#spinner img:nth-child(5){ transform: rotateY(-180deg); }
-  figure#spinner img:nth-child(6){ transform: rotateY(-225deg); }
-  figure#spinner img:nth-child(7){ transform: rotateY(-270deg); }
-  figure#spinner img:nth-child(8){ transform: rotateY(-315deg); }
-  div#carousel ~ span { 
-    color: #fff; 
-    margin: 5%; 
-    display: inline-block; 
-    text-decoration: none; 
-    font-size: 2rem; 
-    transition: 0.6s color; 
-    position: relative; 
-    margin-top: -6rem; 
-    border-bottom: none; 
-    line-height: 0; }
-  div#carousel ~ span:hover { color: #888; cursor: pointer; }
-
 .reviews-container {
     background-color: #fff;
     border-radius: 5px;
     box-shadow: 0 3px 10px -5px rgba(0, 0, 0, 0.3);
     padding: 20px;
+    width: calc(47% - 10px); /* Ширина відгуків буде половиною відповідного розміру, з мінусом 10px відступу */
+    margin-right: 10px; /* Відступ між блоками */
 }
 
 .review {
@@ -441,7 +352,8 @@ div#carousel {
 }
 
 .star-rating {
-    display: inline-block;
+    display: block;
+    margin-top: 5px;
 }
 
 .star-rating input[type="radio"] {
@@ -487,16 +399,21 @@ textarea {
 }
 
 .review {
+    display: flex;
+    flex-direction: column; /* Відображення відгуку у вигляді колонки */
+    align-items: flex-start;
     background-color: #f9f9f9;
     border: 1px solid #ddd;
     border-radius: 8px;
     padding: 20px;
     margin-bottom: 20px;
+    
 }
 
 .review-header {
     display: flex;
     justify-content: space-between;
+    flex-direction: column;
     align-items: center;
     margin-bottom: 10px;
 }
@@ -516,4 +433,6 @@ textarea {
 .review-content {
     font-style: italic;
     color: #666;
+    margin-top: 30px;
+    margin-right: 1000px;
 }

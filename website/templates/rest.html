@@ -7,9 +7,30 @@
     <link rel="stylesheet" href="/static/rest.css">
 </head>
 <body>
+    {% with messages = get_flashed_messages(with_categories=true) %}
+		{% if messages %}
+			{% for category, message in messages %}
+				{% if category == 'error' %}
+				<div class="alert alert-danger alter-dismissable fade show" role="alert">
+					{{ message }}
+					<button type="button" class="close" data-dismiss="alert">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				{% else %}
+				<div class="alert alert-success alter-dismissable fade show" role="alert">
+					{{ message }}
+					<button type="button" class="close" data-dismiss="alert">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				{% endif %}
+			{% endfor %}
+		{% endif %}
+    {% endwith %}
     <header>
         <div class="company-info">
-            <a href="#" class="home-button">Back to Main Page</a>
+            <a href="/" class="home-button">Back to Main Page</a>
             <img src="logo.png" alt="Company Logo" class="company-logo">
             <h1 class="company-name">Supper Spy</h1>
         </div>
@@ -17,7 +38,7 @@
     <main>
         <div class="restaurant-preview">
             <div class="restaurant-photo">
-                <img src="{{ url_for('static', filename='photo/' + restaurant[6]) }}" alt="Restaurant Photo">
+                <img src="/{{ restaurant[6] }}" class="card-image">
                 <h1 class="restaurant-name">{{ restaurant[0] }}</h1>
             </div>
         </div>
@@ -76,6 +97,7 @@
                         </div>
                     </div>
                     <form action="/submit_review" method="POST">
+
                         <div class="leave-rating-feedback">
                             <h3>Leave your rating and feedback</h3>
                             <div class="star-rating" data-rating="0">
@@ -85,79 +107,44 @@
                                 <input type="radio" id="star2" name="rating" value="2"><label for="star2">&#9733;</label>
                                 <input type="radio" id="star1" name="rating" value="1"><label for="star1">&#9733;</label>
                             </div>
-                            <textarea class="feedback" placeholder="Leave your feedback"></textarea>
+                            <textarea class="feedback" name="feedback" placeholder="Leave your feedback"></textarea>
                             <button class="submit-rating">Submit</button>
                         </div>
-                    </form>                                 
+                    </form>
+                              
                 </div>
-                <div class="gallery-section">
-                    <div class="reviews-section">
+
+                    <div class="reviews-container">
                         <h2>Reviews from Other Customers</h2>
-                        <div class="review">
-                            <div class="review-header">
-                                <div class="reviewer-info">
-                                    <img src="user.jpg" alt="Reviewer Profile Picture">
-                                    <h3>John Doe</h3>
+                        {% if reviews %}
+                            {% for review in reviews %}
+                            <div class="review">
+                                <div class="review-header">
+                                    <div class="reviewer-info">
+                                        <!-- Додайте зображення користувача -->
+                                        <img src="{{ review.image_file }}" alt="Reviewer Profile Picture">
+                                        <!-- Виведіть ім'я користувача з відгуку -->
+                                        <h3>{{ review.user_name }}</h3>
+                                    </div>
+                                    <div class="rating">
+                                        <!-- Виведіть рейтинг відгуку -->
+                                        <span class="stars">{% for _ in range(review.rating) %}&#9733;{% endfor %}</span>
+                                        <span class="rating-value">{{ review.rating }}</span>
+                                    </div>
                                 </div>
-                                <div class="rating">
-                                    <span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
-                                    <span class="rating-value">5.0</span>
-                                </div>
-                            </div>
-                            <div class="review-content">
-                                "Amazing experience! The food was delicious and the service was outstanding. Would definitely recommend this restaurant to anyone visiting the area."
-                            </div>
-                        </div>
-                        <div class="review">
-                            <div class="review-header">
-                                <div class="reviewer-info">
-                                    <img src="user.jpg" alt="Reviewer Profile Picture">
-                                    <h3>Jane Smith</h3>
-                                </div>
-                                <div class="rating">
-                                    <span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
-                                    <span class="rating-value">5.0</span>
+                                <div class="review-content">
+                                    <!-- Виведіть текст відгуку -->
+                                    "{{ review.feedback }}"
                                 </div>
                             </div>
-                            <div class="review-content">
-                                "The ambiance of this restaurant is fantastic! I loved the view and the food was top-notch. Can't wait to come back again."
-                            </div>
-                        </div>
-                        <div class="review">
-                            <div class="review-header">
-                                <div class="reviewer-info">
-                                    <img src="user.jpg" alt="Reviewer Profile Picture">
-                                    <h3>Jane Smith</h3>
-                                </div>
-                                <div class="rating">
-                                    <span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
-                                    <span class="rating-value">5.0</span>
-                                </div>
-                            </div>
-                            <div class="review-content">
-                                "The ambiance of this restaurant is fantastic! I loved the view and the food was top-notch. Can't wait to come back again."
-                            </div>
-                        </div>
+                            {% endfor %}
+                        {% else %}
+                            <p>No reviews</p>
+                        {% endif %}
+                    </div>
                         <!-- Add more reviews as needed -->
                     </div>
-                    <h2>Gallery</h2>
-                    <div id="carousel">
-                        <figure id="spinner">
-                            <img src="restaurant.jpg" alt="photo1">
-                            <img src="restaurant.jpg" alt="photo2">
-                            <img src="restaurant.jpg" alt="photo3">
-                            <img src="restaurant.jpg" alt="photo4">
-                            <img src="restaurant.jpg" alt="photo5">
-                            <img src="restaurant.jpg" alt="photo6">
-                            <img src="restaurant.jpg" alt="photo7">
-                            <img src="restaurant.jpg" alt="photo8">
-                            <!-- Should be 8 photos -->
-                        </figure>
-                    </div>
-                    <div class="arrows">
-                        <span class="arrow" onclick="galleryspin('-')">&lt;</span>
-                        <span class="arrow" onclick="galleryspin('')">&gt;</span>
-                    </div>
+                    
                 </div>
             </div>
         </div>       

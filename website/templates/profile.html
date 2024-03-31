@@ -10,7 +10,7 @@
 <body>
     <div class="container">
         <h1>User Profile</h1>
-        <img id="profile-image" src="{{ image_file }}" alt="User Photo">
+        <img id="profile-image" src="{{ user.image_file }}" alt="User Photo">
         
         <div id="user-info">
             <p>{{ user.name }}</p>
@@ -19,32 +19,36 @@
         <div id="favorite-restaurants">
             <h2>Favorite Restaurants</h2>
             <div class="row">
-                <div class="restaurant">
-                    <img src="restaurant1.jpg" alt="Restaurant 1">
-                    <a href="restaurant1.html">Restaurant 1</a>
-                </div>
-                <div class="restaurant">
-                    <img src="restaurant2.jpg" alt="Restaurant 2">
-                    <a href="restaurant2.html">Restaurant 2</a>
-                </div>
-                <div class="restaurant">
-                    <img src="restaurant3.jpg" alt="Restaurant 3">
-                    <a href="restaurant3.html">Restaurant 3</a>
-                </div>
+                {% if restaurant_images %}
+                    {% for restaurant_name, image_path in restaurant_images.items() %}
+                        <div class="restaurant">
+                            <img src="{{ image_path }}" alt="{{ restaurant_name }}">
+                            <a href="#">{{ restaurant_name }}</a>
+                        </div>
+                    {% endfor %}
+                {% else %}
+                    <p>You haven't left any review</p>
+                {% endif %}
             </div>
-            <!-- Add more rows of favorite restaurants as needed -->
         </div>
         <div id="my-reviews">
             <h2>My Reviews</h2>
-            <div class="review">
-                <div class="restaurant">
-                    <img src="restaurant1.jpg" alt="Restaurant">
-                    <p class="restaurant-name"><a href="restaurant4.html">Restaurant 4</a></p>
-                </div>
-                <div class="review-text">
-                    <p>Review text</p>
-                </div>
-            </div>
+            {% if restaurant_reviews %}
+                {% for review, image in restaurant_reviews.items() %}
+                    <div class="review">
+                        <div class="restaurant">
+                            <img src="{{ image }}" alt="Restaurant">
+                            <p class="restaurant-name"><a href="#">{{ review.restaurant_name }}</a></p>
+                        </div>
+                        <div class="review-text">
+                            <p>Your garde: {{ review.rating }} stars</p>
+                            <p>{{ review.feedback }}</p>
+                        </div>
+                    </div>
+                {% endfor %}
+            {% else %}
+                <p>You haven't left any review yet.</p>
+            {% endif %}
         </div>
     </div>
     <div id="back-button">

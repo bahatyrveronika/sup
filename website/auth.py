@@ -63,18 +63,3 @@ def valid_pass(password):
     for i in password:
         if i.isdigit():
             return True
-        
-# class AccountUpdateForm(FlaskForm):
-#     picture = FileField(label = 'Update Profile Picture', validators=[FileAllowed(['jpg', 'png'])])
-#     submit = SubmitField(label='Update Account')
-        
-# @auth.route('/photo')
-# def account():
-#     image_file = url_for('static', filename = 'profile_pics/'+ current_user.image_file)
-#     return render_template('account.html', image_file = image_file)
-        
-
-# @auth.route('/profile')
-# @login_required
-# def profile():
-#     return render_template('profile.html', user=current_user)

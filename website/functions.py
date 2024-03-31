@@ -73,7 +73,7 @@ def find_restaurants():
 
 class Find:
     __restaurants = []
-    __db_path = '/Users/veronikabagatyr-zaharcenko/Desktop/Flask web app tutoriall/website/restaurants.db'
+    __db_path = 'website/restaurants.db'
     # criterias_rate = {'distance': 0, 'rate': 1, 'price': 2}
     # criterias = {'Distance': 0, "Price": 0, 'Rate': 0, 'Cuisine': [], 'Vegan': False, "Children oom": False, "Dishes": [], "Isopen": True}
     def __init__(self, criterias_set: dict, adress: str) -> None:
