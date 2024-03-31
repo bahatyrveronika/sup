@@ -23,7 +23,7 @@
                     {% for restaurant_name, image_path in restaurant_images.items() %}
                         <div class="restaurant">
                             <img src="{{ image_path }}" alt="{{ restaurant_name }}">
-                            <a href="#">{{ restaurant_name }}</a>
+                            <a href="/restpage/{{ restaurant_name }}">{{ restaurant_name }}</a>
                         </div>
                     {% endfor %}
                 {% else %}
@@ -38,7 +38,7 @@
                     <div class="review">
                         <div class="restaurant">
                             <img src="{{ image }}" alt="Restaurant">
-                            <p class="restaurant-name"><a href="#">{{ review.restaurant_name }}</a></p>
+                            <p class="restaurant-name"><a href="/restpage/{{ review.restaurant_name }}">{{ review.restaurant_name }}</a></p>
                         </div>
                         <div class="review-text">
                             <p>Your garde: {{ review.rating }} stars</p>
